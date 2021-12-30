@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<ruleset name="smntcs-image-dimensions">
+    <description>Custom coding standards for SMNTCS Image Dimensions</description>
+
+    <!-- Arguments-->
+    <arg value="psvn"/>
+    <arg name="colors"/>
+    <arg name="parallel" value="100"/>
+    <arg name="extensions" value="php"/>
+    <arg name="cache" value=".phpcs.cache"/>
+
+    <!-- Exclude files and directories-->
+    <exclude-pattern>\.github/*</exclude-pattern>
+    <exclude-pattern>vendor/*</exclude-pattern>
+    <exclude-pattern>assets/*</exclude-pattern>
+
+    <!-- ExcludeInclude sniffs-->
+    <rule ref="Generic.Formatting.MultipleStatementAlignment">
+        <properties>
+            <property name="maxPadding" value="12"/>
+            <property name="error" value="true"/>
+        </properties>
+    </rule>
+
+    <!-- Exclude sniffs-->
+    <rule ref="WordPress">
+        <exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+    </rule>
+
+    <config name="testVersion" value="7.3-"/>
+    <rule ref="PHPCompatibility"/>
+
+</ruleset>
