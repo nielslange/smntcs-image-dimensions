@@ -68,6 +68,18 @@ function smntcs_load_textdomain() {
 add_action( 'plugins_loaded', 'smntcs_load_textdomain' );
 
 /**
+ * Add image file size to post meta after media upload.
+ *
+ * @param int $post_ID The post ID of the attachment.
+ * @return void
+ */
+function smntcs_attachment_fields_to_save( $post_ID ) {
+	$filesize = filesize( get_attached_file( $post_ID ) );
+	update_post_meta( $post_ID, '_filesize', $filesize );
+}
+add_action( 'add_attachment', 'smntcs_attachment_fields_to_save', 10, 1 );
+
+/**
  * Add custom admin column title.
  *
  * @param array $posts_columns The initial array of column headings.
