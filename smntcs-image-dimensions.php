@@ -11,7 +11,7 @@
  * Requires at least: 3.4
  * Requires PHP: 7.3
  * Tested up to: 5.8
- * License: GPL2+
+ * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  *
  * @category   Plugin
@@ -21,12 +21,8 @@
  * @license    http://opensource.org/licenses/gpl-license.php GNU Public License
  */
 
-/**
- * Avoid direct plugin access
- */
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
-}
+// Avoid direct plugin access.
+defined( 'ABSPATH' ) || exit;
 
 /**
  * Add image file size to post meta on plugin activation.
@@ -56,16 +52,6 @@ function smntcs_deactivate_plugin() {
 	}
 }
 register_deactivation_hook( __FILE__, 'smntcs_deactivate_plugin' );
-
-/**
- * Load textdomain
- *
- * @return void
- */
-function smntcs_load_textdomain() {
-	load_plugin_textdomain( 'smntcs-image-dimensions', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-}
-add_action( 'plugins_loaded', 'smntcs_load_textdomain' );
 
 /**
  * Add image file size to post meta after media upload.
