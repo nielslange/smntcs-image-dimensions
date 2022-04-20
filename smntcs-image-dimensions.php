@@ -6,13 +6,13 @@
  * Author: Niels Lange
  * Author URI: https://nielslange.de
  * Text Domain: smntcs-image-dimensions
- * Domain Path: /languages/
- * Version: 1.0
- * Requires at least: 3.4
- * Requires PHP: 7.3
- * Tested up to: 5.8
- * License: GPLv2 or later
- * License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ * Version: 1.1
+ * Stable tag: 1.1
+ * Tested up to: 5.9
+ * Requires PHP: 7.4
+ * Requires at least: 5.2
+ * License: GPLv2+
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  *
  * @category   Plugin
  * @package    WordPress
@@ -72,8 +72,8 @@ add_action( 'add_attachment', 'smntcs_attachment_fields_to_save', 10, 1 );
  * @return array The initial array of column headings.
  */
 function smntcs_manage_media_columns( $posts_columns ) {
-	$posts_columns['dimensions'] = __( 'Dimensions', 'smntcs-image-dimensions' );
-	$posts_columns['filesize']   = __( 'File Size', 'smntcs-image-dimensions' );
+	$posts_columns['dimensions']               = __( 'Dimensions', 'smntcs-image-dimensions' );
+					$posts_columns['filesize'] = __( 'File Size', 'smntcs-image-dimensions' );
 	return $posts_columns;
 }
 add_filter( 'manage_media_columns', 'smntcs_manage_media_columns' );
@@ -122,7 +122,7 @@ function smntcs_pre_get_posts( $query ) {
 	}
 
 	$orderby = $query->get( 'orderby' );
-	if ( 'filesize' == $orderby ) {
+	if ( 'filesize' === $orderby ) {
 		$query->set( 'meta_key', '_filesize' );
 		$query->set( 'orderby', 'meta_value_num' );
 	}
