@@ -57,7 +57,6 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           start: |
-            npm run wp-env destroy
             npm run wp-env start
             npm run wp-env:config
           wait-on: "http://localhost:8888"
