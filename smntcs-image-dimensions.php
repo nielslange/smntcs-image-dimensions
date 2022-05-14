@@ -6,10 +6,9 @@
  * Author: Niels Lange
  * Author URI: https://nielslange.de
  * Text Domain: smntcs-image-dimensions
- * Version: 1.1
- * Stable tag: 1.1
- * Tested up to: 5.9
- * Requires PHP: 7.4
+ * Version: 1.2
+ * Stable tag: 1.2
+ * Requires PHP: 5.6
  * Requires at least: 5.2
  * License: GPLv2+
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
