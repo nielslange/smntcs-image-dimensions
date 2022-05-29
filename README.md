@@ -22,9 +22,14 @@ You can find the plugin on https://wordpress.org/plugins/smntcs-image-dimensions
 
 ## Changelog
 
+### 1.2 (2022.05.14)
+
+-   Test up to WordPress 6.0
+-   Add Cypress for e2e testing
+
 ### 1.1 (2022.04.21)
 
--   Test up to WP 5.9
+-   Test up to WordPress 5.9
 
 ### 1.0 (2021.12.30)
 
