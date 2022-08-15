@@ -2,8 +2,8 @@
 
 Contributors: nielslange
 Tags: Media Dimensions, Media File Size, Media Library
-Version: 1.2
-Stable tag: 1.2
+Version: 1.3
+Stable tag: 1.3
 Tested up to: 6.0
 Requires PHP: 5.6
 Requires at least: 5.2
@@ -26,6 +26,10 @@ Contributions are more than welcome. Simply head over to [Github](https://github
 1. See the image dimension and the image file size in the media library.
 
 == Changelog ==
+
+= 1.3 (2022.08.15) =
+
+* Add sortable colums height and width
 
 = 1.2 (2022.05.14) =
 

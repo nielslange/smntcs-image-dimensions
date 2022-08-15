@@ -22,6 +22,10 @@ You can find the plugin on https://wordpress.org/plugins/smntcs-image-dimensions
 
 ## Changelog
 
+= 1.3 (2022.08.15) =
+
+-   Add sortable colums height and width
+
 ### 1.2 (2022.05.14)
 
 -   Test up to WordPress 6.0
