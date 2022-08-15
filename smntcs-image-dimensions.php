@@ -6,9 +6,9 @@
  * Author: Niels Lange
  * Author URI: https://nielslange.de
  * Text Domain: smntcs-image-dimensions
- * Version: 1.2
- * Stable tag: 1.2
- * Requires PHP: 5.6
+ * Version: 1.3
+ * Stable tag: 1.3
+ * Requires PHP: 6.0
  * Requires at least: 5.2
  * License: GPLv2+
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -30,10 +30,15 @@ defined( 'ABSPATH' ) || exit;
  */
 function smntcs_activate_plugin() {
 	global $wpdb;
+
 	$attachments = $wpdb->get_results( "SELECT ID FROM $wpdb->posts WHERE post_mime_type LIKE '%image%'" );
 	foreach ( $attachments as $attachment ) {
 		$filesize = filesize( get_attached_file( $attachment->ID ) );
 		update_post_meta( $attachment->ID, '_filesize', $filesize );
+
+		list(, $width, $height) = wp_get_attachment_image_src( $attachment->ID, 'full' );
+		update_post_meta( $attachment->ID, '_width', intval( $width ) );
+		update_post_meta( $attachment->ID, '_height', intval( $height ) );
 	}
 }
 register_activation_hook( __FILE__, 'smntcs_activate_plugin' );
@@ -45,6 +50,7 @@ register_activation_hook( __FILE__, 'smntcs_activate_plugin' );
  */
 function smntcs_deactivate_plugin() {
 	global $wpdb;
+
 	$attachments = $wpdb->get_results( "SELECT ID FROM $wpdb->posts WHERE post_mime_type LIKE '%image%'" );
 	foreach ( $attachments as $attachment ) {
 		delete_post_meta( $attachment->ID, '_filesize' );
@@ -55,12 +61,16 @@ register_deactivation_hook( __FILE__, 'smntcs_deactivate_plugin' );
 /**
  * Add image file size to post meta after media upload.
  *
- * @param int $post_ID The post ID of the attachment.
+ * @param int $post_id The post ID of the attachment.
  * @return void
  */
-function smntcs_attachment_fields_to_save( $post_ID ) {
-	$filesize = filesize( get_attached_file( $post_ID ) );
-	update_post_meta( $post_ID, '_filesize', $filesize );
+function smntcs_attachment_fields_to_save( $post_id ) {
+	$filesize = filesize( get_attached_file( $post_id ) );
+	update_post_meta( $post_id, '_filesize', $filesize );
+
+	list(, $width, $height) = wp_get_attachment_image_src( $post_id, 'full' );
+	update_post_meta( $post_id, '_width', intval( $width ) );
+	update_post_meta( $post_id, '_height', intval( $height ) );
 }
 add_action( 'add_attachment', 'smntcs_attachment_fields_to_save', 10, 1 );
 
@@ -71,8 +81,10 @@ add_action( 'add_attachment', 'smntcs_attachment_fields_to_save', 10, 1 );
  * @return array The initial array of column headings.
  */
 function smntcs_manage_media_columns( $posts_columns ) {
-	$posts_columns['dimensions']               = __( 'Dimensions', 'smntcs-image-dimensions' );
-					$posts_columns['filesize'] = __( 'File Size', 'smntcs-image-dimensions' );
+	$posts_columns['dimensions'] = __( 'Dimensions', 'smntcs-image-dimensions' );
+	$posts_columns['width']      = __( 'Width', 'smntcs-image-dimensions' );
+	$posts_columns['height']     = __( 'Height', 'smntcs-image-dimensions' );
+	$posts_columns['filesize']   = __( 'File Size', 'smntcs-image-dimensions' );
 	return $posts_columns;
 }
 add_filter( 'manage_media_columns', 'smntcs_manage_media_columns' );
@@ -90,6 +102,16 @@ function smntcs_manage_media_custom_column( $column_name, $post_id ) {
 		printf( '%d &times; %d', (int) $width, (int) $height );
 	}
 
+	if ( 'width' === $column_name ) {
+		$width = get_post_meta( $post_id, '_width', true );
+		print( esc_attr( $width ) );
+	}
+
+	if ( 'height' === $column_name ) {
+		$height = get_post_meta( $post_id, '_height', true );
+		print( esc_attr( $height ) );
+	}
+
 	if ( 'filesize' === $column_name ) {
 		$filesize = get_post_meta( $post_id, '_filesize', true );
 		print( esc_attr( size_format( $filesize, 2 ) ) );
@@ -104,6 +126,8 @@ add_action( 'manage_media_custom_column', 'smntcs_manage_media_custom_column', 1
  * @return array The updated array of sortable columns.
  */
 function smntcs_manage_upload_sortable_columns( $columns ) {
+	$columns['height']   = 'height';
+	$columns['width']    = 'width';
 	$columns['filesize'] = 'filesize';
 	return $columns;
 }
@@ -121,6 +145,18 @@ function smntcs_pre_get_posts( $query ) {
 	}
 
 	$orderby = $query->get( 'orderby' );
+	if ( 'width' === $orderby ) {
+		$query->set( 'meta_key', '_width' );
+		$query->set( 'meta_query', array( 'type' => 'NUMERIC' ) );
+		$query->set( 'orderby', 'meta_value_num' );
+	}
+
+	if ( 'height' === $orderby ) {
+		$query->set( 'meta_key', '_height' );
+		$query->set( 'meta_query', array( 'type' => 'NUMERIC' ) );
+		$query->set( 'orderby', 'meta_value_num' );
+	}
+
 	if ( 'filesize' === $orderby ) {
 		$query->set( 'meta_key', '_filesize' );
 		$query->set( 'orderby', 'meta_value_num' );
@@ -134,6 +170,6 @@ add_action( 'pre_get_posts', 'smntcs_pre_get_posts' );
  * @return void
  */
 function smntcs_admin_head() {
-	print( '<style>.column-filesize, .column-dimensions { width: 120px; }</style>' );
+	print( '<style>.column-dimensions, .column-height, .column-width, .column-filesize { width: 120px; }</style>' );
 }
 add_action( 'admin_head', 'smntcs_admin_head' );
