@@ -1,7 +1,7 @@
 # SMNTCS Image Dimensions
 
 ![Support Level](https://img.shields.io/badge/support-active-green.svg)
-![Build Status](https://github.com/nielslange/smntcs-quantity-buttons-for-woocommerce/actions/workflows/test.yml/badge.svg)
+![Build Status](https://github.com/nielslange/smntcs-image-dimensions/actions/workflows/test.yml/badge.svg)
 ![GPLv2 License](https://img.shields.io/github/license/nielslange/smntcs-image-dimensions.svg)
 ![Compatible to WordPress version](https://plugintests.com/plugins/smntcs-image-dimensions/wp-badge.svg)
 ![Compatible to PHP version](https://plugintests.com/plugins/smntcs-image-dimensions/php-badge.svg)
