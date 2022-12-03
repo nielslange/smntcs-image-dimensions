@@ -1,26 +1,20 @@
 <?php
 /**
- * Plugin Name: SMNTCS Image Dimensions
- * Plugin URI: https://github.com/nielslange/smntcs-image-dimensions
- * Description: Shows the image dimension and the image file size in the media library.
- * Author: Niels Lange
- * Author URI: https://nielslange.de
- * Text Domain: smntcs-image-dimensions
- * Version: 1.3
- * Stable tag: 1.3
- * Requires PHP: 6.0
- * Requires at least: 5.2
- * License: GPLv2+
- * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Plugin Name:           SMNTCS Image Dimensions
+ * Plugin URI:            https://github.com/nielslange/smntcs-image-dimensions
+ * Description:           Shows the image dimension and the image file size in the media library.
+ * Author:                Niels Lange
+ * Author URI:            https://nielslange.de
+ * Text Domain:           smntcs-image-dimensions
+ * Version:               1.4
+ * Requires PHP:          5.6
+ * Requires at least:     5.2
+ * License:               GPL v2 or later
+ * License URI:           https://www.gnu.org/licenses/gpl-2.0.html
  *
- * @category   Plugin
- * @package    WordPress
- * @subpackage SMNTCS Image Dimensions
- * @author     Niels Lange <info@nielslange.de>
- * @license    http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @package SMNTCS_Image_Dimensions
  */
 
-// Avoid direct plugin access.
 defined( 'ABSPATH' ) || exit;
 
 /**
