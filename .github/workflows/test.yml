@@ -1,9 +1,12 @@
 name: Run PHPCS, PHPLint and Cypress
 
-on: [pull_request]
+on: [pull_request, pull]
 
 jobs:
-  PHPCS:
+  checks:
+    strategy:
+      matrix:
+        tool: ["phpcs", "phplint"]
     runs-on: ubuntu-latest
 
     steps:
@@ -13,30 +16,12 @@ jobs:
       - name: Install Composer dependencies
         uses: ramsey/composer-install@v1
 
-      - name: Show PHPCS sniffs
-        run: ./vendor/bin/phpcs -i
+      - name: Show tool version info
+        run: ./vendor/bin/${{ matrix.tool }} --version
 
-      - name: Show PHPCS version
-        run: ./vendor/bin/phpcs --version
-
-      - name: Run PHP_CodeSniffer
-        run: composer phpcs
-
-  PHPLint:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install Composer dependencies
-        uses: ramsey/composer-install@v1
-
-      - name: Show PHPLint version info
-        run: ./vendor/bin/phplint --version
-
-      - name: Run PHPLint
-        run: composer phplint
+      - name: Run tool
+        run: composer ${{ matrix.tool }}
+  # Uncomment to enable Cypress check in the future
   # Cypress:
   #   runs-on: ubuntu-latest
   #   steps:
