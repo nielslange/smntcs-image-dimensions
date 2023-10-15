@@ -2,8 +2,8 @@
 
 Contributors:       nielslange
 Tags:               Media Dimensions, Media File Size, Media Library
-Stable tag:         1.4
-Tested up to:       6.1
+Stable tag:         1.5
+Tested up to:       6.4
 Requires PHP:       5.6
 Requires at least:  5.2
 License:            GPL v2 or later
@@ -25,6 +25,10 @@ Contributions are more than welcome. Simply head over to [Github](https://github
 1. See the image dimension and the image file size in the media library.
 
 == Changelog ==
+
+= 1.5 (2023.10.15) =
+
+- Test up to WP 6.4
 
 = 1.4 (2022.12.03) =
 
