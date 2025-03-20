@@ -22,9 +22,13 @@ You can find the plugin on https://wordpress.org/plugins/smntcs-image-dimensions
 
 ## Changelog
 
+### 1.6 (2025.03.20)
+
+-   Test up to WP 6.8
+
 ### 1.5 (2023.10.15)
 
-- Test up to WP 6.4
+-   Test up to WP 6.4
 
 ### 1.4 (2022.12.03)
 
