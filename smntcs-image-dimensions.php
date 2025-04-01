@@ -21,7 +21,6 @@ defined( 'ABSPATH' ) || exit;
  * Class SMNTCS_Image_Dimensions
  */
 class SMNTCS_Image_Dimensions {
-
 	/**
 	 * SMNTCS_Image_Dimensions constructor.
 	 */
@@ -83,7 +82,7 @@ class SMNTCS_Image_Dimensions {
 	/**
 	 * Manage media columns.
 	 *
-	 * @param array $posts_columns Posts columns.
+	 * @param  array $posts_columns Posts columns.
 	 * @return array
 	 */
 	public function manage_media_columns( $posts_columns ) {
@@ -98,7 +97,7 @@ class SMNTCS_Image_Dimensions {
 	 * Manage media custom column.
 	 *
 	 * @param string $column_name Column name.
-	 * @param int    $post_id Post ID.
+	 * @param int    $post_id     Post ID.
 	 */
 	public function manage_media_custom_column( $column_name, $post_id ) {
 		if ( 'dimensions' === $column_name ) {
@@ -125,7 +124,7 @@ class SMNTCS_Image_Dimensions {
 	/**
 	 * Manage upload sortable columns.
 	 *
-	 * @param array $columns Columns.
+	 * @param  array $columns Columns.
 	 * @return array
 	 */
 	public function manage_upload_sortable_columns( $columns ) {
