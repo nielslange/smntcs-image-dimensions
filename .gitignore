@@ -2,3 +2,7 @@ node_modules/
 vendor/
 /.phplint.cache
 /.phpcs.cache
+cypress/screenshots
+cypress/videos
+playwright-report
+test-results

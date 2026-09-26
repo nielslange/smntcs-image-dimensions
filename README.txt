@@ -1,15 +1,21 @@
 === SMNTCS Image Dimensions ===
 
 Contributors:       nielslange
-Tags:               Media Dimensions, Media File Size, Media Library
-Stable tag:         1.7
-Tested up to:       7.0
-Requires PHP:       7.4
+Tags:               media library, image dimensions, file size, images, media
 Requires at least:  5.2
+Tested up to:       7.1
+Requires PHP:       7.4
+Stable tag:         1.8
 License:            GPL v2 or later
 License URI:        https://www.gnu.org/licenses/gpl-2.0.html
 
-Shows the image dimension and the image file size in the media library.
+Shows the dimensions and the file size of every image in the media library list view.
+
+== Description ==
+
+SMNTCS Image Dimensions adds two sortable columns to the list view of the media library: the image dimensions in pixels and the file size. You can see at a glance which images are too large or too small without opening each one.
+
+There are no settings. Activate the plugin and switch the media library to the list view.
 
 == Installation ==
 
@@ -18,13 +24,18 @@ Shows the image dimension and the image file size in the media library.
 
 == Contribute ==
 
-Contributions are more than welcome. Simply head over to [Github](https://github.com/nielslange/smntcs-image-dimensions/) and open an issue or a pull request.
+Contributions are more than welcome. Simply head over to [GitHub](https://github.com/nielslange/smntcs-image-dimensions/) and open an issue or a pull request.
 
 == Screenshots ==
 
 1. See the image dimension and the image file size in the media library.
 
 == Changelog ==
+
+= 1.8 (2026.09.26) =
+
+- Test up to WordPress 7.1
+- Update development dependencies and GitHub Actions
 
 = 1.7 (2026.08.14) =
 
